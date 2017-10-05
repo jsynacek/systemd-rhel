@@ -333,7 +333,8 @@ int make_stdio(int fd);
 int make_null_stdio(void);
 int make_console_stdio(void);
 
-int dev_urandom(void *p, size_t n);
+int acquire_random_bytes(void *p, size_t n, bool high_quality_required);
+void pseudorandom_bytes(void *p, size_t n);
 void random_bytes(void *p, size_t n);
 void initialize_srand(void);
 
@@ -436,6 +437,7 @@ int sigaction_many(const struct sigaction *sa, ...);
 int fopen_temporary(const char *path, FILE **_f, char **_temp_path);
 
 ssize_t loop_read(int fd, void *buf, size_t nbytes, bool do_poll);
+int loop_read_exact(int fd, void *buf, size_t nbytes, bool do_poll);
 int loop_write(int fd, const void *buf, size_t nbytes, bool do_poll);
 
 bool is_device_path(const char *path);
